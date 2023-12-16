@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import render
-from .models import Booking, MenuItem
+from .models import Booking, Menu
 from .serializers import BookingSerializer, MenuItemSerializer
 
 # Create your views here.
@@ -21,7 +21,7 @@ class BookingView(APIView):
 
 class MenuView(APIView):
     def get(self, request):
-        items = MenuItem.objects.all()
+        items = Menu.objects.all()
         serializer = MenuItemSerializer(items, many=True)
         return Response(serializer.data)
 
@@ -33,11 +33,11 @@ class MenuView(APIView):
             return Response({'status': 'success', 'data': serializer.data})
 
 class MenuItemView(ListCreateAPIView):
-    queryset = MenuItem.objects.all()
+    queryset = Menu.objects.all()
     serializer_class = MenuItemSerializer
 
 class SingleMenuItemView(RetrieveUpdateAPIView, DestroyAPIView):
-    queryset = MenuItem.objects.all()
+    queryset = Menu.objects.all()
     serializer_class = MenuItemSerializer
 
 class BookingViewSet(ModelViewSet):
