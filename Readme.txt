@@ -1,3 +1,7 @@
+# To activate virtual environment
+pipenv shell
+pipenv install
+
 # Static HTML Content
 /restaurant
 
